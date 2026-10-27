@@ -130,7 +130,7 @@ addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(buildGarlan
 // ===== Music: starts as soon as the page opens (song file already begins at 0:57 of the original) =====
 const song = document.getElementById('song');
 const muteBtn = document.getElementById('mute');
-song.volume = 0.85;
+song.volume = 0.85; song.load();
 let started = false;
 function startSong() {
   if (started) return;
