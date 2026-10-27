@@ -44,7 +44,7 @@ function runReveal() {
 let opening = false;
 function openStrips() { if (opening) return; opening = true; curtain.classList.add('open'); petalShower(); runReveal(); setTimeout(finish, 2700); }
 // A tap on the curtain counts as the gesture phones require for sound: music + curtains start together
-curtain.addEventListener('pointerdown', () => { startSong(); openStrips(); });
+['click', 'touchend', 'pointerup'].forEach(e => curtain.addEventListener(e, () => { startSong(); openStrips(); }));
 
 let videoMode = false;
 cv.addEventListener('canplay', () => {
@@ -136,11 +136,11 @@ function startSong() {
   if (started) return;
   song.play().then(() => {
     started = true;
-    ['pointerdown', 'touchstart', 'keydown', 'wheel', 'scroll'].forEach(e => removeEventListener(e, startSong, true));
+    ['click', 'touchend', 'pointerup', 'keydown', 'wheel'].forEach(e => removeEventListener(e, startSong, true));
   }).catch(() => {});
 }
 startSong();                                   // works where the browser allows autoplay
-['pointerdown', 'touchstart', 'keydown', 'wheel', 'scroll'].forEach(e => addEventListener(e, startSong, { capture: true, passive: true }));
+['click', 'touchend', 'pointerup', 'keydown', 'wheel'].forEach(e => addEventListener(e, startSong, { capture: true, passive: true }));
 song.addEventListener('timeupdate', () => {    // gentle fade-out over the last 6 seconds
   const left = song.duration - song.currentTime;
   if (left < 6) song.volume = Math.max(0, 0.85 * left / 6);
