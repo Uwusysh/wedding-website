@@ -32,7 +32,9 @@ function finish() {
 // Ganesha scene: idol appears as the curtains part, light pours in from the edges, floods, then reveals the page
 const reveal = document.getElementById('reveal');
 const idolImg = document.getElementById('idolimg');
-idolImg.addEventListener('load', () => { idolImg.hidden = false; document.getElementById('idolsvg').style.display = 'none'; });
+const useImg = () => { idolImg.hidden = false; document.getElementById('idolsvg').style.display = 'none'; };
+idolImg.addEventListener('load', useImg);
+if (idolImg.complete && idolImg.naturalWidth) useImg();
 function runReveal() {
   reveal.classList.add('lit');
   setTimeout(() => reveal.classList.add('flooded'), 1700);
@@ -121,3 +123,27 @@ function buildGarlands() {
 buildGarlands();
 let rz;
 addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(buildGarlands, 200); });
+
+// ===== Music: starts as soon as the page opens (song file already begins at 0:57 of the original) =====
+const song = document.getElementById('song');
+const muteBtn = document.getElementById('mute');
+song.volume = 0.85;
+let started = false;
+function startSong() {
+  if (started) return;
+  song.play().then(() => {
+    started = true;
+    ['pointerdown', 'touchstart', 'keydown', 'wheel', 'scroll'].forEach(e => removeEventListener(e, startSong, true));
+  }).catch(() => {});
+}
+startSong();                                   // works where the browser allows autoplay
+['pointerdown', 'touchstart', 'keydown', 'wheel', 'scroll'].forEach(e => addEventListener(e, startSong, { capture: true, passive: true }));
+song.addEventListener('timeupdate', () => {    // gentle fade-out over the last 6 seconds
+  const left = song.duration - song.currentTime;
+  if (left < 6) song.volume = Math.max(0, 0.85 * left / 6);
+});
+muteBtn.addEventListener('click', () => {
+  song.muted = !song.muted;
+  muteBtn.classList.toggle('off', song.muted);
+});
+document.addEventListener('visibilitychange', () => { if (document.hidden) song.pause(); else if (started && !song.ended) song.play().catch(() => {}); });

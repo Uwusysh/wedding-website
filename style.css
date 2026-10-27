@@ -26,7 +26,7 @@ body{background:linear-gradient(180deg,#fde3d3,#fff1e3 45%,#fde3d3);color:var(--
 /* ===== GANESHA REVEAL ===== */
 #reveal{position:fixed;inset:0;z-index:99;overflow:hidden;background:radial-gradient(ellipse at 50% 42%,#5a1016 0%,#2a0504 72%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .9s ease}
 #reveal.out{opacity:0;pointer-events:none}
-.idol{position:relative;z-index:3;width:min(66vw,310px);height:auto;opacity:0;transform:scale(.9);filter:drop-shadow(0 0 26px rgba(255,200,90,.6));transition:opacity 1.2s ease,transform 3s ease}
+.idol{position:relative;z-index:3;width:min(74vw,330px);max-height:78vh;object-fit:contain;height:auto;opacity:0;transform:scale(.9);filter:drop-shadow(0 0 26px rgba(255,200,90,.6));transition:opacity 1.2s ease,transform 3s ease}
 #reveal.lit .idol{opacity:1;transform:scale(1)}
 .om{position:relative;z-index:3;margin-top:14px;font-family:'Noto Serif Devanagari',serif;font-weight:700;font-size:18px;color:#f3d77f;opacity:0;transition:opacity 1.2s ease .5s}
 #reveal.lit .om{opacity:1}
@@ -153,3 +153,6 @@ h2{font-family:'Marcellus',serif;font-weight:400;font-size:26px;letter-spacing:.
 .r{opacity:0;transform:translateY(22px);transition:opacity .9s ease,transform .9s ease}
 .r.in{opacity:1;transform:none}
 @media (prefers-reduced-motion:reduce){*{animation:none!important;transition-duration:.01s!important}}
+
+#mute{position:fixed;top:10px;right:max(10px,calc(50% - 230px));z-index:200;width:38px;height:38px;border-radius:50%;border:1px solid rgba(201,152,58,.8);background:rgba(255,250,240,.85);color:#9d1230;font-size:18px;line-height:1;cursor:pointer;box-shadow:0 2px 8px rgba(0,0,0,.25)}
+#mute.off{opacity:.6;text-decoration:line-through}
