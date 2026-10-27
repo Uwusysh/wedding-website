@@ -28,6 +28,57 @@
 </defs></svg>
 
 <!-- ===== CURTAIN INTRO: opens by itself, gone in ~3s ===== -->
+<!-- ===== GANESHA REVEAL (behind the curtain): idol + light from the edges, then the page ===== -->
+<div id="reveal" aria-hidden="true">
+  <div class="rays"></div>
+  <div class="beam bl"></div><div class="beam br"></div><div class="beam bt"></div><div class="beam bb"></div>
+  <svg class="idol" id="idolsvg" viewBox="0 0 200 250" aria-hidden="true">
+  <defs>
+    <linearGradient id="gg" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#fff0b8"/><stop offset=".45" stop-color="#e2a93a"/><stop offset="1" stop-color="#9a6514"/></linearGradient>
+    <linearGradient id="gd" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#8a5a14"/><stop offset=".5" stop-color="#f3d77f"/><stop offset="1" stop-color="#8a5a14"/></linearGradient>
+    <radialGradient id="hl" cx=".5" cy=".5" r=".5"><stop offset=".55" stop-color="#ffd37a" stop-opacity="0"/><stop offset=".8" stop-color="#ffd37a" stop-opacity=".5"/><stop offset="1" stop-color="#ffd37a" stop-opacity="0"/></radialGradient>
+  </defs>
+  <circle cx="100" cy="112" r="98" fill="url(#hl)"/>
+  <circle cx="100" cy="112" r="88" fill="none" stroke="url(#gg)" stroke-width="1.6" stroke-dasharray="2 5"/>
+  <g stroke="#7a4d10" stroke-width="1.6" stroke-linejoin="round" stroke-linecap="round">
+    <!-- lotus seat -->
+    <g fill="url(#gg)"><path d="M28 226 C40 206 62 206 70 220 C60 232 40 236 28 226Z"/><path d="M172 226 C160 206 138 206 130 220 C140 232 160 236 172 226Z"/><path d="M62 226 C74 202 126 202 138 226 C124 240 76 240 62 226Z"/></g>
+    <!-- body -->
+    <path d="M58 178 C50 150 66 132 100 132 C134 132 150 150 142 178 C150 204 128 216 100 216 C72 216 50 204 58 178Z" fill="url(#gg)"/>
+    <path d="M74 176 C84 186 116 186 126 176" fill="none" stroke="#7a4d10" stroke-width="1.2" opacity=".7"/>
+    <path d="M70 140 C82 150 118 150 130 140" fill="none" stroke="#fff6cf" stroke-width="2" opacity=".8"/>
+    <!-- hands holding a modak -->
+    <path d="M56 160 C44 170 48 188 66 190 C76 190 80 180 72 172Z" fill="url(#gg)"/>
+    <path d="M144 160 C156 170 152 188 134 190 C124 190 120 180 128 172Z" fill="url(#gg)"/>
+    <path d="M60 192 C60 182 72 178 78 186 C80 194 70 200 62 198Z" fill="#fff3c4"/>
+    <!-- ears -->
+    <path d="M64 66 C18 52 6 108 40 140 C54 132 62 114 66 98Z" fill="url(#gg)"/>
+    <path d="M136 66 C182 52 194 108 160 140 C146 132 138 114 134 98Z" fill="url(#gg)"/>
+    <path d="M56 80 C36 82 30 106 44 124" fill="none" opacity=".6"/><path d="M144 80 C164 82 170 106 156 124" fill="none" opacity=".6"/>
+    <!-- head -->
+    <path d="M62 62 C66 44 134 44 138 62 C152 92 138 124 100 128 C62 124 48 92 62 62Z" fill="url(#gg)"/>
+    <!-- crown -->
+    <path d="M66 58 L74 22 L88 42 L100 10 L112 42 L126 22 L134 58 C116 50 84 50 66 58Z" fill="url(#gd)"/>
+    <circle cx="100" cy="30" r="4" fill="#d6336c" stroke="none"/><circle cx="82" cy="44" r="2.6" fill="#d6336c" stroke="none"/><circle cx="118" cy="44" r="2.6" fill="#d6336c" stroke="none"/>
+    <!-- eyes & tilak -->
+    <path d="M78 84 Q86 78 94 84" fill="none"/><path d="M106 84 Q114 78 122 84" fill="none"/>
+    <circle cx="86" cy="86" r="2.2" fill="#3b1c06" stroke="none"/><circle cx="114" cy="86" r="2.2" fill="#3b1c06" stroke="none"/>
+    <path d="M100 62 V76" stroke="#c2273f" stroke-width="3.2" fill="none"/><path d="M92 66 Q100 58 108 66" stroke="#c2273f" stroke-width="1.6" fill="none"/>
+    <!-- trunk -->
+    <path d="M100 92 C104 118 100 140 88 160 C76 180 92 200 108 192 C118 186 112 172 102 176" fill="none" stroke="url(#gg)" stroke-width="15"/>
+    <path d="M100 92 C104 118 100 140 88 160 C76 180 92 200 108 192 C118 186 112 172 102 176" fill="none" stroke="#7a4d10" stroke-width="1.4" opacity=".7"/>
+    <path d="M97 96 C100 120 96 140 85 158" fill="none" stroke="#fff6cf" stroke-width="2.4" opacity=".8" stroke-linecap="round"/>
+    <!-- tusk -->
+    <path d="M114 112 C128 124 126 142 114 148 C122 138 120 126 112 118Z" fill="#fffaf0"/>
+    <!-- mala -->
+    <path d="M70 134 C86 156 114 156 130 134" fill="none" stroke="#c2273f" stroke-width="3.2" stroke-dasharray="1.5 5" opacity=".9"/>
+  </g>
+</svg>
+<img class="idol" id="idolimg" src="assets/ganesh.webp" alt="Lord Ganesha" hidden>
+  <p class="om">॥ श्री गणेशाय नमः ॥</p>
+  <div class="flood"></div>
+</div>
+
 <div id="curtain" aria-hidden="true">
   <div id="strips"></div>
   <video id="cv" muted playsinline preload="auto"><source src="assets/curtain.mp4" type="video/mp4"></video>
@@ -38,8 +89,6 @@
 <!-- ===== FIXED DECOR (cream arch panel, marigold borders, small torans) ===== -->
 <div class="fx" aria-hidden="true">
   <div class="panel"></div>
-  <div class="sbell sbl"><i class="ch"></i><svg class="mf"><use href="#ymar"/></svg><svg class="mf"><use href="#ymar"/></svg><svg class="bb"><use href="#bell"/></svg></div>
-  <div class="sbell sbr"><i class="ch"></i><svg class="mf"><use href="#ymar"/></svg><svg class="mf"><use href="#ymar"/></svg><svg class="bb"><use href="#bell"/></svg></div>
   <div class="gar gl1"></div><div class="gar gr1"></div>
 </div>
 

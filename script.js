@@ -29,7 +29,17 @@ function finish() {
   curtain.classList.add('gone');
   setTimeout(() => curtain.remove(), 700);
 }
-function openStrips() { curtain.classList.add('open'); petalShower(); setTimeout(finish, 2700); }
+// Ganesha scene: idol appears as the curtains part, light pours in from the edges, floods, then reveals the page
+const reveal = document.getElementById('reveal');
+const idolImg = document.getElementById('idolimg');
+idolImg.addEventListener('load', () => { idolImg.hidden = false; document.getElementById('idolsvg').style.display = 'none'; });
+function runReveal() {
+  reveal.classList.add('lit');
+  setTimeout(() => reveal.classList.add('flooded'), 1700);
+  setTimeout(() => reveal.classList.add('out'), 2500);
+  setTimeout(() => reveal.remove(), 3500);
+}
+function openStrips() { curtain.classList.add('open'); petalShower(); runReveal(); setTimeout(finish, 2700); }
 
 let videoMode = false;
 cv.addEventListener('canplay', () => {
@@ -37,11 +47,11 @@ cv.addEventListener('canplay', () => {
   curtain.classList.add('vid');
   cv.classList.add('on');
   cv.play().catch(() => { videoMode = false; cv.classList.remove('on'); });
-  setTimeout(petalShower, 1500);
+  setTimeout(petalShower, 1500); runReveal();
   cv.addEventListener('ended', finish);
   setTimeout(finish, 9000);
 }, { once: true });
-setTimeout(() => { if (!videoMode) openStrips(); }, 1000);
+setTimeout(() => { if (!videoMode) openStrips(); }, 700);
 
 // Scroll reveal
 const io = new IntersectionObserver(es => es.forEach(e => {
@@ -111,28 +121,3 @@ function buildGarlands() {
 buildGarlands();
 let rz;
 addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(buildGarlands, 200); });
-
-// Green bushes along both borders (with a ripple of wind down them)
-function buildBushes() {
-  const fx = document.querySelector('.fx');
-  fx.querySelectorAll('.bushcol').forEach(n => n.remove());
-  ['bcl', 'bcr'].forEach((cls, side) => {
-    const col = document.createElement('div');
-    col.className = 'bushcol ' + cls;
-    fx.appendChild(col);
-    const n = Math.ceil(col.clientHeight / 44);
-    for (let k = 0; k < n; k++) {
-      const s = document.createElementNS('http://www.w3.org/2000/svg', 'svg');
-      const u = document.createElementNS('http://www.w3.org/2000/svg', 'use');
-      u.setAttribute('href', '#bush');
-      s.appendChild(u);
-      const size = 56 + ((k * 7 + side * 3) % 5) * 4;
-      s.style.cssText = `width:${size}px;height:${size}px;top:${k * 44 - 12}px;` +
-        `transform:rotate(${((k * 13 + side * 29) % 31) - 15}deg);animation-delay:${(-k * 0.3).toFixed(2)}s;` +
-        (k % 2 ? 'scale:-1 1;' : '');
-      col.appendChild(s);
-    }
-  });
-}
-buildBushes();
-addEventListener('resize', () => { clearTimeout(rz); rz = setTimeout(() => { buildGarlands(); buildBushes(); }, 200); });

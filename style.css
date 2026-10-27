@@ -23,6 +23,25 @@ body{background:linear-gradient(180deg,#fde3d3,#fff1e3 45%,#fde3d3);color:var(--
 .invoke p{margin-top:20px;font-size:14px;letter-spacing:.35em}
 #curtain.open .invoke,#curtain.vid .invoke{opacity:0}
 
+/* ===== GANESHA REVEAL ===== */
+#reveal{position:fixed;inset:0;z-index:99;overflow:hidden;background:radial-gradient(ellipse at 50% 42%,#5a1016 0%,#2a0504 72%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .9s ease}
+#reveal.out{opacity:0;pointer-events:none}
+.idol{position:relative;z-index:3;width:min(66vw,310px);height:auto;opacity:0;transform:scale(.9);filter:drop-shadow(0 0 26px rgba(255,200,90,.6));transition:opacity 1.2s ease,transform 3s ease}
+#reveal.lit .idol{opacity:1;transform:scale(1)}
+.om{position:relative;z-index:3;margin-top:14px;font-family:'Noto Serif Devanagari',serif;font-weight:700;font-size:18px;color:#f3d77f;opacity:0;transition:opacity 1.2s ease .5s}
+#reveal.lit .om{opacity:1}
+.rays{position:absolute;left:50%;top:44%;width:150vmax;height:150vmax;margin:-75vmax 0 0 -75vmax;background:repeating-conic-gradient(from 0deg,rgba(255,214,130,.20) 0 6deg,rgba(255,214,130,0) 6deg 18deg);-webkit-mask:radial-gradient(circle,#000 0,transparent 55%);mask:radial-gradient(circle,#000 0,transparent 55%);opacity:0;animation:spinr 40s linear infinite;transition:opacity 1.6s ease}
+#reveal.lit .rays{opacity:1}
+@keyframes spinr{to{transform:rotate(360deg)}}
+.beam{position:absolute;z-index:2;opacity:0;transition:opacity 1.2s ease,transform 2.2s ease-out}
+.bl{left:0;top:0;bottom:0;width:70%;background:linear-gradient(90deg,rgba(255,222,150,.75),rgba(255,222,150,0));transform:translateX(-60%)}
+.br{right:0;top:0;bottom:0;width:70%;background:linear-gradient(270deg,rgba(255,222,150,.75),rgba(255,222,150,0));transform:translateX(60%)}
+.bt{left:0;right:0;top:0;height:55%;background:linear-gradient(180deg,rgba(255,236,190,.7),rgba(255,236,190,0));transform:translateY(-60%)}
+.bb{left:0;right:0;bottom:0;height:55%;background:linear-gradient(0deg,rgba(255,200,120,.6),rgba(255,200,120,0));transform:translateY(60%)}
+#reveal.lit .beam{opacity:1;transform:none}
+.flood{position:absolute;inset:0;z-index:5;opacity:0;background:radial-gradient(ellipse at 50% 50%,#fffaf0 0%,#fff1dc 45%,#fde3d3 100%);transition:opacity 1s ease}
+#reveal.flooded .flood{opacity:1}
+
 /* ===== FIXED DECOR ===== */
 .fx{position:fixed;top:0;bottom:0;left:50%;width:var(--w);transform:translateX(-50%);pointer-events:none;z-index:1;overflow:hidden}
 .fx img{position:absolute;user-select:none}
@@ -34,20 +53,6 @@ body{background:linear-gradient(180deg,#fde3d3,#fff1e3 45%,#fde3d3);color:var(--
 @keyframes flw{from{transform:translateX(-1.5px) rotate(-8deg)}to{transform:translateX(2px) rotate(10deg)}}
 /* arch-shaped crown under the header: text slides under this curve */
 .hdr::after{content:"";position:absolute;left:0;right:0;top:100%;height:44px;background:url("data:image/svg+xml,%3Csvg%20xmlns='http://www.w3.org/2000/svg'%20viewBox='0%200%20480%2044'%20preserveAspectRatio='none'%3E%3Cpath%20d='M0%200H480V44H442C442%2028%20404%2026%20362%2016C312%204%20266%2014%20240%202C214%2014%20168%204%20118%2016C76%2026%2038%2028%2038%2044H0Z'%20fill='%23fde9dd'/%3E%3Cpath%20d='M38%2044C38%2028%2076%2026%20118%2016C168%204%20214%2014%20240%202C266%2014%20312%204%20362%2016C404%2026%20442%2028%20442%2044'%20fill='none'%20stroke='%23c9983a'%20stroke-width='2.2'%20vector-effect='non-scaling-stroke'/%3E%3Cpath%20d='M44%2044C44%2032%2080%2030%20120%2022C168%2012%20212%2020%20240%209C268%2020%20312%2012%20360%2022C400%2030%20436%2032%20436%2044'%20fill='none'%20stroke='%23c9983a'%20stroke-opacity='.5'%20stroke-width='1'%20vector-effect='non-scaling-stroke'/%3E%3C/svg%3E") no-repeat;background-size:100% 100%;pointer-events:none}
-/* one big brass bell on each side, hanging on a chain with marigolds */
-.sbell{position:absolute;z-index:4;top:calc(var(--H) + 30px);width:44px;display:flex;flex-direction:column;align-items:center;transform-origin:50% 0;animation:chainw 3.6s ease-in-out infinite alternate;filter:drop-shadow(0 3px 3px #0004)}
-.sbl{left:22px}.sbr{right:22px;animation-delay:-1.6s}
-.sbell .ch{width:4px;height:84px;background:repeating-linear-gradient(180deg,#c9983a 0 6px,#8a5f12 6px 8px,#f3d77f 8px 12px)}
-.sbell .mf{width:22px;height:22px;margin-top:-3px}
-.sbell .bb{width:44px;height:56px;margin-top:-4px;transform-origin:50% 0;animation:bellw 2.1s ease-in-out infinite alternate}
-@keyframes chainw{from{transform:rotate(-4deg)}to{transform:rotate(5deg)}}
-@keyframes bellw{from{transform:rotate(-8deg)}to{transform:rotate(10deg)}}
-/* green bushes lining both borders */
-.bushcol{position:absolute;top:calc(var(--H) + 6px);bottom:calc(var(--F) + 20px);width:60px;z-index:2}
-.bushcol.bcl{left:-12px}.bushcol.bcr{right:-12px}
-.bushcol svg{position:absolute;left:0;transform-origin:50% 100%;animation:bushw 3.4s ease-in-out infinite alternate;filter:drop-shadow(0 1px 2px #0003)}
-@keyframes bushw{from{rotate:-4deg}to{rotate:5deg}}
-
 /* lotus + marigold clusters by the elephants */
 .lot{position:absolute;bottom:2px;width:46px;height:30px;z-index:6}
 .mg{position:absolute;bottom:2px;width:22px;height:22px;z-index:6;animation:flw 3s ease-in-out infinite alternate}
