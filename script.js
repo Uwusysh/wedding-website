@@ -41,7 +41,10 @@ function runReveal() {
   setTimeout(() => reveal.classList.add('out'), 2500);
   setTimeout(() => reveal.remove(), 3500);
 }
-function openStrips() { curtain.classList.add('open'); petalShower(); runReveal(); setTimeout(finish, 2700); }
+let opening = false;
+function openStrips() { if (opening) return; opening = true; curtain.classList.add('open'); petalShower(); runReveal(); setTimeout(finish, 2700); }
+// A tap on the curtain counts as the gesture phones require for sound: music + curtains start together
+curtain.addEventListener('pointerdown', () => { startSong(); openStrips(); });
 
 let videoMode = false;
 cv.addEventListener('canplay', () => {
@@ -53,7 +56,7 @@ cv.addEventListener('canplay', () => {
   cv.addEventListener('ended', finish);
   setTimeout(finish, 9000);
 }, { once: true });
-setTimeout(() => { if (!videoMode) openStrips(); }, 700);
+setTimeout(() => { if (!videoMode) openStrips(); }, 2500);
 
 // Scroll reveal
 const io = new IntersectionObserver(es => es.forEach(e => {

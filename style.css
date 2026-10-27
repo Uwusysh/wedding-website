@@ -21,7 +21,9 @@ body{background:linear-gradient(180deg,#fde3d3,#fff1e3 45%,#fde3d3);color:var(--
 .invoke{position:absolute;inset:0;z-index:4;display:flex;flex-direction:column;align-items:center;justify-content:center;font-family:'Marcellus',serif;color:#fbf0d9;transition:opacity .5s;pointer-events:none}
 .invoke span{width:96px;height:96px;border-radius:50%;border:1px solid rgba(233,196,106,.7);background:rgba(52,7,5,.3);backdrop-filter:blur(4px);display:flex;align-items:center;justify-content:center;font-size:34px;box-shadow:0 0 30px rgba(233,196,106,.5);animation:flick 1s ease-in-out infinite alternate}
 .invoke p{margin-top:20px;font-size:14px;letter-spacing:.35em}
+.invoke::after{content:'Tap for music & to open';margin-top:10px;font-size:11px;letter-spacing:.2em;opacity:.8;animation:flick 1.2s ease-in-out infinite alternate}
 #curtain.open .invoke,#curtain.vid .invoke{opacity:0}
+#curtain{cursor:pointer}
 
 /* ===== GANESHA REVEAL ===== */
 #reveal{position:fixed;inset:0;z-index:99;overflow:hidden;background:radial-gradient(ellipse at 50% 42%,#5a1016 0%,#2a0504 72%);display:flex;flex-direction:column;align-items:center;justify-content:center;transition:opacity .9s ease}
