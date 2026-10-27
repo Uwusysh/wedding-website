@@ -6,7 +6,7 @@ body{background:linear-gradient(180deg,#fde3d3,#fff1e3 45%,#fde3d3);color:var(--
 /* ===== CURTAIN INTRO: 24 fabric folds that gather and pull apart ===== */
 #curtain{position:fixed;inset:0;z-index:100;overflow:hidden;background:transparent;transition:opacity .5s ease}
 #curtain.gone{opacity:0;pointer-events:none}
-#strips{position:absolute;inset:0;background:#2a0504;transition:background .01s 2.6s}
+#strips{position:absolute;inset:0;background:#2a0504}
 #curtain.open #strips{background:transparent}
 #strips i{position:absolute;top:0;bottom:0;background-image:url(assets/curtain.webp);background-repeat:no-repeat;will-change:transform;
   transition:transform 1.7s cubic-bezier(.55,0,.25,1) var(--d,0s)}
@@ -34,10 +34,10 @@ body{background:linear-gradient(180deg,#fde3d3,#fff1e3 45%,#fde3d3);color:var(--
 #reveal.lit .rays{opacity:1}
 @keyframes spinr{to{transform:rotate(360deg)}}
 .beam{position:absolute;z-index:2;opacity:0;transition:opacity 1.2s ease,transform 2.2s ease-out}
-.bl{left:0;top:0;bottom:0;width:70%;background:linear-gradient(90deg,rgba(255,222,150,.75),rgba(255,222,150,0));transform:translateX(-60%)}
-.br{right:0;top:0;bottom:0;width:70%;background:linear-gradient(270deg,rgba(255,222,150,.75),rgba(255,222,150,0));transform:translateX(60%)}
-.bt{left:0;right:0;top:0;height:55%;background:linear-gradient(180deg,rgba(255,236,190,.7),rgba(255,236,190,0));transform:translateY(-60%)}
-.bb{left:0;right:0;bottom:0;height:55%;background:linear-gradient(0deg,rgba(255,200,120,.6),rgba(255,200,120,0));transform:translateY(60%)}
+.rbl{left:0;top:0;bottom:0;width:70%;background:linear-gradient(90deg,rgba(255,222,150,.75),rgba(255,222,150,0));transform:translateX(-60%)}
+.rbr{right:0;top:0;bottom:0;width:70%;background:linear-gradient(270deg,rgba(255,222,150,.75),rgba(255,222,150,0));transform:translateX(60%)}
+.rbt{left:0;right:0;top:0;height:55%;background:linear-gradient(180deg,rgba(255,236,190,.7),rgba(255,236,190,0));transform:translateY(-60%)}
+.rbb{left:0;right:0;bottom:0;height:55%;background:linear-gradient(0deg,rgba(255,200,120,.6),rgba(255,200,120,0));transform:translateY(60%)}
 #reveal.lit .beam{opacity:1;transform:none}
 .flood{position:absolute;inset:0;z-index:5;opacity:0;background:radial-gradient(ellipse at 50% 50%,#fffaf0 0%,#fff1dc 45%,#fde3d3 100%);transition:opacity 1s ease}
 #reveal.flooded .flood{opacity:1}
@@ -74,7 +74,7 @@ body{background:linear-gradient(180deg,#fde3d3,#fff1e3 45%,#fde3d3);color:var(--
 .toran{top:0;left:0;width:100%;z-index:6;filter:drop-shadow(0 4px 6px #0005);transform-origin:50% 0;animation:windT 4s ease-in-out infinite alternate}
 .leaf{width:27%;z-index:4;transform-origin:50% 100%;animation:wind 3.6s ease-in-out infinite alternate}
 .leaf.tl{top:44px;left:-2%}.leaf.tr{top:44px;right:-2%;scale:-1 1;animation-duration:4.2s;animation-delay:-1.2s}
-.leaf.bl{bottom:34px;left:-3%;width:25%;animation-duration:4.8s;animation-delay:-2.4s}.leaf.br{bottom:34px;right:-3%;width:25%;scale:-1 1;animation-duration:3.9s;animation-delay:-.6s}
+.leaf.bl{bottom:78px;left:-3%;width:25%;animation-duration:4.8s;animation-delay:-2.4s}.leaf.br{bottom:78px;right:-3%;width:25%;scale:-1 1;animation-duration:3.9s;animation-delay:-.6s}
 .ele{bottom:-4px;width:25%;z-index:5}
 .el{left:-1%;transform:scaleX(-1)}.er{right:-1%}
 @keyframes wind{0%{transform:rotate(-2deg) skewX(0deg)}30%{transform:rotate(3deg) skewX(-3deg)}65%{transform:rotate(1deg) skewX(2deg)}100%{transform:rotate(7deg) skewX(-4deg)}}
